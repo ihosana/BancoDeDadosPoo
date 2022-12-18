@@ -1,0 +1,84 @@
+CREATE TABLE Produto(
+id SERIAL PRIMARY KEY,
+codigoProduto INT,
+valorProduto FLOAT,
+categoria TEXT
+);
+SELECT*FROM Cliente;
+
+
+CREATE TABLE Cliente(
+id SERIAL PRIMARY KEY,
+endereco TEXT,
+telefone INT
+);
+CREATE TABLE PessoFisica(
+id INT PRIMARY KEY REFERENCES Cliente (id),
+CPF INT,
+nome TEXT
+);
+INSERT INTO Cliente(endereco, telefone) VALUES ('rua das tulipas',9847593);
+
+
+
+
+CREATE TABLE PessoaJuridica(
+id INT PRIMARY KEY REFERENCES Cliente(id),
+nome_social TEXT,
+CNJP INT);
+
+
+CREATE TABLE Venda(
+id SERIAL PRIMARY KEY,
+dataVenda DATE,
+horaVenda TIME,
+fk_Produto int,
+fk_Cliente int,
+FOREIGN KEY (fk_Produto) REFERENCES Produto(id),
+
+FOREIGN KEY (fk_Cliente) REFERENCES Cliente(id)
+);
+SELECT*FROM Venda;
+
+CREATE TABLE Usuario(
+id SERIAL PRIMARY KEY ,
+nomeFuncionario TEXT,
+endereco TEXT,
+telefone INT,
+numeroCarteira INT,
+fk_venda INT,
+fkcliente INT,
+FOREIGN KEY (fk_venda) REFERENCES Venda(id),
+FOREIGN KEY (fkcliente) REFERENCES Cliente(id)
+);
+SELECT*FROM Usuario;
+
+
+
+//////////////////////
+1° PASSO:
+-cadastrar um novo cliente com os mesmos dados(INSERT) com o novo ID
+2° PASSO
+- cadastrar novo cliente com os mesmos dados e com novo ID
+
+3° PASSO
+- cadastrar nova venda se haver com os mesmos dados e com o NOVO ID
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

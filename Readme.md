@@ -1,0 +1,1 @@
+Banco de Dados relacionado ao Projeto de POO, sobre Loja de Informática

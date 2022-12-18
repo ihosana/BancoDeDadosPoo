@@ -1,0 +1,633 @@
+CREATE TABLE Produto(
+id SERIAL PRIMARY KEY,
+codigoProduto INT,
+valorProduto FLOAT,
+categoria TEXT
+);
+SELECT*FROM Cliente;
+
+
+CREATE TABLE Cliente(
+id SERIAL PRIMARY KEY,
+endereco TEXT,
+telefone INT
+);
+CREATE TABLE PessoFisica(
+id INT PRIMARY KEY REFERENCES Cliente (id),
+CPF INT,
+nome TEXT
+);
+INSERT INTO Cliente(endereco, telefone) VALUES ('rua das tulipas',9847593);
+
+
+
+
+CREATE TABLE PessoaJuridica(
+id INT PRIMARY KEY REFERENCES Cliente(id),
+nome_social TEXT,
+CNJP INT);
+
+
+CREATE TABLE Venda(
+id SERIAL PRIMARY KEY,
+dataVenda DATE,
+horaVenda TIME,
+fk_Produto int,
+fk_Cliente int,
+FOREIGN KEY (fk_Produto) REFERENCES Produto(id),
+
+FOREIGN KEY (fk_Cliente) REFERENCES Cliente(id)
+);
+SELECT*FROM Venda;
+
+CREATE TABLE Usuario(
+id SERIAL PRIMARY KEY ,
+nomeFuncionario TEXT,
+endereco TEXT,
+telefone INT,
+numeroCarteira INT,
+fk_venda INT,
+fkcliente INT,
+FOREIGN KEY (fk_venda) REFERENCES Venda(id),
+FOREIGN KEY (fkcliente) REFERENCES Cliente(id)
+);
+SELECT*FROM Usuario;
+
+
+
+//////////////////////
+1° PASSO:
+-cadastrar um novo cliente com os mesmos dados(INSERT) com o novo ID
+2° PASSO
+- cadastrar novo cliente com os mesmos dados e com novo ID
+
+3° PASSO
+- cadastrar nova venda se haver com os mesmos dados e com o NOVO ID
+
+select * from cliente, pessoajuridica WHERE cliente.id= pessoajuridica.cnpj  ;
+
+
+CREATE TABLE Cliente(
+id varchar(14)PRIMARY KEY,
+endereco TEXT,
+telefone INT
+);
+INSERT INTO cliente VALUES (4343,'nassare',3323223);
+INSERT INTO cliente VALUES (73,'rua',44663)
+select*from cliente
+
+CREATE TABLE PessoaFisica(
+cpf VARCHAR(14) PRIMARY KEY REFERENCES Cliente (id),
+nome TEXT
+);
+INSERT INTO pessoafisica VALUES (473,'iana');
+select*from pessoafisica
+
+
+CREATE TABLE PessoaJuridica(
+cnpj VARCHAR(14) PRIMARY KEY REFERENCES Cliente (id),
+nome TEXT
+);
+INSERT INTO pessoajuridica VALUES (4343,'iosana');
+SELECT* FROM PessoaJuridica
+
+
+drop table Cliente 
+
+
+CREATE TABLE Produto(
+id SERIAL PRIMARY KEY,
+Nome_Produto TEXT,
+codigoProduto INT,
+valorProduto FLOAT,
+qnt INT,
+categoria TEXT
+);
+INSERT INTO produto (nome_produto,codigoproduto,valorproduto,qnt,categoria) VALUES ('Mouse sem fio',2003434,24.32,2,'mause')
+
+select* from produto
+
+
+
+CREATE TABLE Usuario(
+id SERIAL PRIMARY KEY ,
+nomeFuncionario TEXT,
+endereco TEXT,
+telefone INT,
+numeroCarteira INT,
+fk_venda INT,
+fk_cliente INT,
+FOREIGN KEY (fk_venda) REFERENCES Venda(id),
+FOREIGN KEY (fk_cliente) REFERENCES Cliente(id)
+);
+select*from usuario
+
+
+CREATE TABLE Venda(
+id SERIAL PRIMARY KEY,
+dataVenda DATE,
+horaVenda TIME,
+fk_Usuario int,
+fk_Produto int,
+fk_Cliente VARCHAR(14),
+FOREIGN KEY (fk_Produto) REFERENCES Produto(id),
+FOREIGN KEY (fk_Usuario) REFERENCES Usuario(id),
+FOREIGN KEY (fk_Cliente) REFERENCES Cliente(id)
+);
+drop table produto
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------
+CREATE TABLE PessoaFisica(
+cpf VARCHAR(14) PRIMARY KEY REFERENCES Cliente (id),
+nome TEXT
+);
+INSERT INTO pessoafisica VALUES (473,'iana');
+select*from pessoafisica
+
+
+CREATE TABLE PessoaJuridica(
+cnpj VARCHAR(14) PRIMARY KEY REFERENCES Cliente (id),
+nome TEXT
+);
+INSERT INTO pessoajuridica VALUES (4343,'iosana');
+SELECT* FROM PessoaJuridica
+
+
+drop table Cliente 
+
+
+CREATE TABLE Produto(
+codigoProduto INT PRIMARY KEY,
+Nome_Produto TEXT,
+valorProduto FLOAT,
+qntVendidas INT,
+categoria TEXT
+);
+INSERT INTO produto (codigoproduto,nome_produto,valorproduto,qntVendidas,categoria) VALUES (1233,'Mouse sem fio',24.32,2,'mause')
+
+select* from produto
+
+
+
+CREATE TABLE Usuario(
+id SERIAL PRIMARY KEY ,
+nomeFuncionario TEXT,
+endereco TEXT,
+telefone INT,
+numeroCarteira INT,
+fk_venda INT,
+fk_cliente INT,
+FOREIGN KEY (fk_venda) REFERENCES Venda(id),
+FOREIGN KEY (fk_cliente) REFERENCES Cliente(id)
+);
+select*from venda
+
+
+CREATE TABLE Venda(
+id SERIAL PRIMARY KEY,
+dataVenda DATE,
+horaVenda TIME,
+fk_Usuario int,
+fk_Produto int,
+fk_Cliente VARCHAR(14),
+FOREIGN KEY (fk_Produto) REFERENCES Produto(codigoProduto),
+FOREIGN KEY (fk_Usuario) REFERENCES Usuario(id),
+FOREIGN KEY (fk_Cliente) REFERENCES Cliente(id)
+);
+select*from  cliente
+select*from produto
+SELECT*FROM venda
+
+SELECT*FROM pessoajuridica
+insert into Venda VALUES(2,'20/6/2022','15:00',1,1233,90)
+drop table Produto
+select nome, qntProduto from Produto
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT*FROM produto
+
+drop table produto
+INSERT INTO produto VALUES (1233, 'mause sem fio',24,30,'mause');
+INSERT INTO venda VALUES(1,'20/03/2022','12:00',2,1,1233,34);
+select *from venda
+select from produto
+
+drop table produto 
+CREATE TABLE Venda(
+id SERIAL PRIMARY KEY,
+dataVenda text,
+horaVenda TEXT,
+qntProduto INT,
+fk_Usuario int,
+fk_Produto int,
+fk_Cliente VARCHAR(14),
+FOREIGN KEY (fk_Produto) REFERENCES Produto(codigoProduto),
+FOREIGN KEY (fk_Usuario) REFERENCES Usuario(id),
+FOREIGN KEY (fk_Cliente) REFERENCES Cliente(id)
+);
+CREATE TABLE Produto(
+codigoProduto INT PRIMARY KEY,
+Nome_Produto TEXT,
+valorProduto FLOAT,
+categoria TEXT
+);
+INSERT INTO produto (codigoproduto,nome_produto,valorproduto,categoria) VALUES (1200,'Mouse sem fio',24.32,'mause')
+
+select* from produto
+
+
+
+
+
+
+----rere
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------outro-----inicio
+select * from cliente, pessoajuridica WHERE cliente.id= pessoajuridica.id  ;
+select * from cliente, pessofisica WHERE cliente.id= pessofisica.id  
+
+
+CREATE TABLE PessoaJuridica(
+id INT PRIMARY KEY REFERENCES Cliente(id),
+nome_social TEXT,
+CNJP varchar(14));
+INSERT INTO pessoajuridica VALUES (2,'264.808.395-97','Alvares');
+INSERT INTO pessoajuridica VALUES (3,'500.900.395-97','Beto');
+SELECT*FROM pessoajuridica;
+
+
+select * from PessoFisica;
+INSERT INTO pessofisica VALUES (4,'200.888.355-97',565656789)
+delete from  pessofisica where id=1 
+SELECT*FROM Cliente
+
+
+drop table pessoFisica
+
+CREATE TABLE PessoFisica(
+id int PRIMARY KEY REFERENCES Cliente (id),
+CPF VARCHAR(14),
+nome TEXT
+);
+
+
+CREATE TABLE Cliente(
+id SERIAL PRIMARY KEY,
+endereco TEXT,
+telefone INT
+);
+select* from produto
+INSERT INTO produto (codigoproduto,valorproduto,categoria,nome_produto) VALUES (2003434,24.32,'mause','mouse sem fio')
+Alter table produto add nome_produto text 
+
+select* from usuario
+INSERT INTO usuario VALUES('Angelo','capim macio',3233333,54,);
+
+
+
+select* from venda
+
+.........
+.
+.
+.
+.
+
+.
+.
+.
+.
+.
+.
+.
+............
+select * from cliente, pessoajuridica WHERE cliente.id= pessoajuridica.cnpj  ;
+
+
+CREATE TABLE Cliente(
+id varchar(14)PRIMARY KEY,
+endereco TEXT,
+telefone INT
+);
+INSERT INTO cliente VALUES (4343,'nassare',3323223);
+INSERT INTO cliente VALUES (73,'rua',44663)
+select*from cliente
+
+CREATE TABLE PessoaFisica(
+cpf VARCHAR(14) PRIMARY KEY REFERENCES Cliente (id),
+nome TEXT
+);
+INSERT INTO pessoafisica VALUES (473,'iana');
+select*from pessoafisica
+
+
+CREATE TABLE PessoaJuridica(
+cnpj VARCHAR(14) PRIMARY KEY REFERENCES Cliente (id),
+nome TEXT
+);
+INSERT INTO pessoajuridica VALUES (4343,'iosana');
+SELECT* FROM PessoaJuridica
+
+
+drop table Cliente 
+
+
+CREATE TABLE Produto(
+id SERIAL PRIMARY KEY,
+Nome_Produto TEXT,
+codigoProduto INT,
+valorProduto FLOAT,
+qnt INT,
+categoria TEXT
+);
+INSERT INTO produto (nome_produto,codigoproduto,valorproduto,qnt,categoria) VALUES ('Mouse sem fio',2003434,24.32,2,'mause')
+
+select* from produto
+
+
+
+CREATE TABLE Usuario(
+id SERIAL PRIMARY KEY ,
+nomeFuncionario TEXT,
+endereco TEXT,
+telefone INT,
+numeroCarteira INT
+);
+INSERT INTO usuario (nomefuncionario,endereco,telefone,numerocarteira) VALUES ('Helena','maria lacerda',1223234,78);
+select*from usuario
+
+
+CREATE TABLE Venda(
+id SERIAL PRIMARY KEY,
+dataVenda DATE,
+horaVenda TIME,
+fk_Usuario int,
+fk_Produto int,
+fk_Cliente VARCHAR(14),
+FOREIGN KEY (fk_Produto) REFERENCES Produto(id),
+FOREIGN KEY (fk_Usuario) REFERENCES Usuario(id),
+FOREIGN KEY (fk_Cliente) REFERENCES Cliente(id)
+);
+Insert into Venda (datavenda,horavenda,fk_produto,fk_usuario,fk_cliente) VALUES ('20/04/2022','13:00',1,1,90);
+
+Insert into Venda (datavenda,horavenda,fk_produto,fk_usuario,fk_cliente) VALUES ('20/06/2022','13:00',1,1,34);
+select*from venda
+delete venda
+SELECT*FROM venda where dataVenda='2022/04/20';
+
+drop table produto
+SELECT* from Cliente where Cliente.id='34';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------
+	DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+						String dataFormatada = formatterData.format(agora);
+						System.out.println(dataFormatada);
+						DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
+						String horaFormatada = formatterHora.format(agora);
+						System.out.println(horaFormatada);
+						
+
+
+
+
+///////
+  op.nextLine();
+					  System.out.println("Digite a data atual da realização da venda:");
+			         d=(op.nextLine());
+					  
+						SimpleDateFormat formato = new SimpleDateFormat(d);
+						Date date = new Date(data);
+						venda.setData_venda(date);
+						
+//
+//                       Date dataHoraAtual = new Date(data);
+//                       String data2 = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
+//                       String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
+//                  
+			      	  System.out.println("Digite a hora da realização da venda:");
+			      	  h=(op.nextLine());
+               venda.setId(6);
+                      // converter 212010 para 21:20:10
+                      DateTimeFormatter Hora= DateTimeFormatter.ofPattern(h);
+                      Time hora3 = new Time(H);
+					  venda.setHorario_venda(hora3);	
+		              venda.setFk_cliente(id);
+   				      venda.setFk_usuario(opcao);
+				      vDAO.inserirVenda(venda);
+
+
+
+
+
+
+
+
+
+drop TABLE paciente;
+/*-----CRIAÇÃO DAS TABELAS-----*/
+
+/*PACIENTE*/
+CREATE TABLE paciente(
+ID SERIAL PRIMARY KEY,
+nome TEXT,
+data_nascimento DATE,
+endereco TEXT,
+cpf VARCHAR(14))
+
+SELECT* FROM paciente;
+
+/*PRONTUARIO*/
+CREATE TABLE prontuario(
+ID SERIAL PRIMARY KEY,
+data_internacao DATE,
+duracao_internacao INT,
+motivo_internacao TEXT,
+status TEXT,
+fk_paciente INT)
+
+SELECT* FROM prontuario;
+
+
+/*MEDICO*/
+CREATE TABLE Medico(
+ID SERIAL PRIMARY KEY,
+nome TEXT,
+especialidade TEXT,
+crm INT)
+
+SELECT* FROM medico;
+
+/*ANOTAÇÕES PRONTUARIO*/
+CREATE TABLE AnotacaoProntuario(
+ID SERIAL PRIMARY KEY,
+data DATE,
+informacoes TEXT,
+fk_medico INT,
+fk_prontuario INT)
+
+SELECT* FROM anotacaoprontuario;
+
+
+
+/*-----PREENCHIMENTO DAS TABELAS-----*/
+
+/*INSERT EM MEDICOS*/
+INSERT INTO Medico(nome,especialidade,crm)VALUES('Danilo','Cirugião',06545);
+INSERT INTO Medico(nome,especialidade,crm)VALUES('Pedro', 'Pisiquiatra',065945);
+INSERT INTO Medico(nome,especialidade,crm)VALUES('Joana','Enfermeira',08045);
+INSERT INTO Medico(nome,especialidade,crm)VALUES(' Ana','Cirugião',0765775);
+INSERT INTO Medico(nome,especialidade,crm)VALUES('Jonas','Enfermeiro',008845);
+
+/*INSERT EM PACIENTES*/
+INSERT INTO Paciente(nome,data_nascimento, endereco,cpf)VALUES('Carla Fernandes', '20/04/1990','UfrnMacaiba',0078996545);
+INSERT INTO Paciente(nome,data_nascimento, endereco,cpf)VALUES('Camila Castro', '21/04/1990','Rua das majestades',005596545);
+INSERT INTO Paciente(nome,data_nascimento, endereco,cpf)VALUES('Júlia Anacleto', '02/04/1990','Bairro de Pedra',00808045);
+INSERT INTO Paciente(nome,data_nascimento, endereco,cpf)VALUES(' Ana Cecília Nascimento', '12/04/1990','Rua das dores',007776545);
+INSERT INTO Paciente(nome,data_nascimento, endereco,cpf)VALUES('Juliana Pedrosa', '05/04/1990','Rua das tulipas',000666545);
+
+/*INSERT PRONTUARIO*/
+INSERT INTO Prontuario(data_internacao, duracao_internacao, motivo_internacao, fk_paciente,
+status)VALUES('20/11/2021',3,'overdose',1,'ativo');
+INSERT INTO Prontuario(data_internacao, duracao_internacao, motivo_internacao, fk_paciente,
+status)VALUES('23/12/2021',1,'Manchao Pulmão',1,'ativo');
+INSERT INTO Prontuario(data_internacao, duracao_internacao, motivo_internacao, fk_paciente,
+status)VALUES('02/01/2022',2,'cirrose',1,'ativo');
+INSERT INTO Prontuario(data_internacao, duracao_internacao, motivo_internacao, fk_paciente,
+status)VALUES('10/06/2022',3,'overdose',1,'ativo');
+INSERT INTO Prontuario(data_internacao, duracao_internacao, motivo_internacao, fk_paciente,
+status)VALUES('20/07/2022',6,'overdose',1,'ativo');
+
+INSERT INTO Prontuario(data_internacao, duracao_internacao, motivo_internacao, fk_paciente,
+status)VALUES('2/11/2021',7,'parada cardíaca',2,'ativo');
+INSERT INTO Prontuario(data_internacao, duracao_internacao, motivo_internacao, fk_paciente,
+status)VALUES('10/11/2021',3,'gripe',3,'ativo');
+
+UPDATE Prontuario set data_internacao='05/10/2022' where data_internacao='2021-11-02'
+/*ANOTAÇÃO PRONTUARIO*/
+INSERT INTO AnotacaoProntuario(data,informacoes, fk_medico,fk_prontuario)VALUES('05/10/2022','Apenas um surto diabetico',1,1);
+INSERT INTO AnotacaoProntuario(data,informacoes, fk_medico,fk_prontuario)VALUES('05/10/2022','Apenas um surto diabetico',2,1);
+INSERT INTO AnotacaoProntuario(data,informacoes, fk_medico,fk_prontuario)VALUES('05/10/2022','Apenas um surto diabetico',3,1);
+INSERT INTO AnotacaoProntuario(data,informacoes, fk_medico,fk_prontuario)VALUES('05/10/2022','Apenas um surto diabetico',1,1);
+INSERT INTO AnotacaoProntuario(data,informacoes, fk_medico,fk_prontuario)VALUES('05/10/2022','Apenas um surto diabetico',3,1);
+INSERT INTO AnotacaoProntuario(data,informacoes, fk_medico,fk_prontuario)VALUES('05/10/2022','Apenas um surto diabetico',,7);
+
+select*from medico
+/*SELECTS*/
+/*1*/UPDATE prontuario SET status='inativo' WHERE id=1;
+/*1.1*/UPDATE prontuario SET status='inativo' WHERE id=7
+/*2*/UPDATE paciente SET cpf= '01323344599' WHERE cpf='78996545';
+/*3*/DELETE FROM medico anotacaoprontuario WHERE medico.id=anotacaoprontuario.fk_medico AND  medico.id=2 ;
+Delete from medico anotacaoprontuario where id='2' and fk_medico='2'/*OBS*/
+/*4*/SELECT * FROM paciente WHERE nome LIKE '%C%'
+/*5*/SELECT nome FROM prontuario, paciente where prontuario.status='ativo' AND prontuario.fk_paciente=paciente.id;
+/*6*/SELECT nome, status FROM prontuario, paciente;
+/*7*/SELECT duracao_internacao FROM prontuario;
+
+/*8*/SELECT id FROM prontuario WHERE id = (SELECT MAX(id) FROM prontuario);SELECT id FROM prontuario WHERE id = (SELECT MIN(id) FROM prontuario);
+/*9*/SELECT duracao_internacao, nome FROM prontuario, paciente;
+/*10*/SELECT fk_prontuario, fk_medico FROM anotacaoprontuario,prontuario, medico WHERE fk_medico=medico.id AND fk_prontuario=prontuario.id;
+/*11*/SELECT *FROM  medico;
+/*12*/SELECT medico.nome,medico.id FROM medico, anotacaoprontuario WHERE medico.id!=anotacaoprontuario.fk_medico;
+/*13*/SELECT medico.nome, medico.id FROM medico, prontuario WHERE  medico.id=prontuario.fk_paciente;
+/*14*/SELECT medico.nome, medico.id FROM medico, prontuario WHERE medico.id=prontuario.id;
+/*15*/SELECT paciente.nome, paciente.id FROM paciente ORDER BY nome;
+/*16*/SELECT medico.nome from medico, anotacaoprontuario WHERE anotacaoprontuario.data='05/10/2022' AND anotacaoprontuario.fk_medico=medico.id
+select*from anotacaoprontuario
+/*17*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
